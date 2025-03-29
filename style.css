@@ -1,0 +1,7 @@
+body {
+    padding-top: 70px; /* Adjusted for navbar height */
+}
+
+.table-warning {
+    background-color: #fff3cd;  /* Light yellow for low stock */
+}

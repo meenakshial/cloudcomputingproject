@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Stock History{% endblock %}
+
+{% block content %}
+    <h1>Stock History for {{ item.name }}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Change</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for history in history_items %}
+                <tr>
+                    <td>{{ history.date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>{{ history.quantity_change }}</td>
+                    <td>{{ history.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('stock_list') }}" class="btn btn-secondary">Back to Stock List</a>
+{% endblock %}

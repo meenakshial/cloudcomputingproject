@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card bg-light mb-3">
+                <div class="card-header">Total Items</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ total_items }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-warning mb-3">
+                <div class="card-header">Items Low on Stock</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ low_stock_items }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-info mb-3">
+                <div class="card-header">Total Stock Value</div>
+                <div class="card-body">
+                    <h4 class="card-title">${{ total_value|round(2) }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Recent Activity</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Date</th>
+                <th>Change</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for history in recent_history %}
+                <tr>
+                    <td>{{ history.item.name }}</td>
+                    <td>{{ history.date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>{{ history.quantity_change }}</td>
+                    <td>{{ history.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
